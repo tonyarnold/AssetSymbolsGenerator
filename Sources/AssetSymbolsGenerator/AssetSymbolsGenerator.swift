@@ -33,11 +33,8 @@ struct AssetSymbolsGenerator: AsyncParsableCommand {
         }
 
         var contents = """
-        #if canImport(SwiftUI)
-        public import SwiftUI
-        #endif
         #if canImport(DeveloperToolsSupport)
-        public import DeveloperToolsSupport
+        import DeveloperToolsSupport
         #endif
         """
 
@@ -65,6 +62,8 @@ struct AssetSymbolsGenerator: AsyncParsableCommand {
         contents += """
 
         #if canImport(SwiftUI)
+        import SwiftUI
+
         @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
         extension SwiftUI.Color {
 
