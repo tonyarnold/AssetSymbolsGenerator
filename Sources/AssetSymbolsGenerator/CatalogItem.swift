@@ -82,7 +82,7 @@ struct CatalogItem {
             contents += """
 
             \(tabs)/// The "\(resourcePath.joined(separator: "/"))" asset catalog color resource.
-            \(tabs)\(accessLevel) static var \(variableName): SwiftUI.Color { .init(.\(resourcePath.joined(separator: "."))) }
+            \(tabs)\(accessLevel) static var \(variableName): SwiftUI.Color { .init(ColorResource.\(resourcePath.joined(separator: "."))) }
 
             """
         }
