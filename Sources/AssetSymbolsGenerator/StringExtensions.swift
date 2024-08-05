@@ -1,9 +1,6 @@
 import Foundation
 
 extension String {
-    var lowercasingFirst: String { prefix(1).lowercased() + dropFirst() }
-    var uppercasingFirst: String { prefix(1).uppercased() + dropFirst() }
-
     var camelCased: String {
         guard !isEmpty else { return "" }
         let parts = components(separatedBy: .alphanumerics.inverted)
@@ -23,7 +20,7 @@ extension String {
         var modifiedName = pascalCased
 
         if let firstCharacter = modifiedName.unicodeScalars.first, CharacterSet.decimalDigits.contains(firstCharacter) {
-            modifiedName = "_" + modifiedName
+            modifiedName = "_\(firstCharacter)" + modifiedName.dropFirst().uppercasingFirst
         }
 
         return modifiedName
@@ -33,11 +30,16 @@ extension String {
         var modifiedName = camelCased
 
         if let firstCharacter = modifiedName.unicodeScalars.first, CharacterSet.decimalDigits.contains(firstCharacter) {
-            modifiedName = "_" + modifiedName
+            modifiedName = "_\(firstCharacter)" + modifiedName.dropFirst().uppercasingFirst
         } else if self == "default" {
             modifiedName = "`" + modifiedName + "`"
         }
 
         return modifiedName
     }
+}
+
+extension StringProtocol {
+    var lowercasingFirst: String { prefix(1).lowercased() + dropFirst() }
+    var uppercasingFirst: String { prefix(1).uppercased() + dropFirst() }
 }
